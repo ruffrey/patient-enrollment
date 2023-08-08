@@ -1,7 +1,9 @@
+import { Patient } from "./src/types/Patient";
+
 const { ApolloServer, gql } = require('apollo-server');
 
 // This will act as our mock database
-let patients = [];
+let patients: Patient[] = [];
 
 // Define your type definitions
 const typeDefs = gql`
@@ -11,6 +13,8 @@ const typeDefs = gql`
     contactInformation: String!
     insuranceDetails: String!
     status: String!
+    riskAdjustmentFactor: Number!
+    riskProfile: String!
   }
 
   type Query {
@@ -29,29 +33,28 @@ const resolvers = {
     patients: () => patients,
   },
   Mutation: {
-    addPatient: (_, { name, contactInformation, insuranceDetails, status }) => {
-      const newPatient = {
-        id: patients.length + 1,
-        name,
-        contactInformation,
-        insuranceDetails,
-        status,
-      };
+    addPatient: (_, { name, riskProfile  }) => {
+      // TODO: Create a new Patient object with the following properties:
+      // - id: a unique id (use one of 1001 or 1002 to match the data in data/riskAdjustmentSampleData.json)
+      // - name: the name passed in as an argument
+      // - riskProfile: the riskProfile passed in as an argument
+      // - enrollmentStatus: default for new patient is ENROLLMENT_STATUS.PROSPECT
 
-      patients.push(newPatient);
+      // TODO: Compute the riskAdjustmentFactor using the computeRiskAdjustmentFactor function
+      // TODO: Set the riskAdjustmentFactor property on the new Patient object
 
-      console.log("Added patient")
-      return newPatient;
+      // TODO: Save the new Patient object to the patients array (our mock database)
+
     },
-    updatePatientStatus: (_, { id, status }) => {
-      const patientIndex = patients.findIndex((patient) => patient.id === id);
-
-      if (patientIndex !== -1) {
-        patients[patientIndex].status = status;
-        return patients[patientIndex];
-      } else {
-        throw new Error('Patient not found');
-      }
+    updatePatientEnrollmentStatus: (_, { id, enrollmentStatus }) => {
+      // TODO: Find the patient in the patients array with the given id or throw an error if not found
+      // TODO: Update the enrollmentStatus property on the patient object and return the updated patient object
+    },
+    updateRiskProfile: (_, { id, riskProfile }) => {
+      // TODO: Find the patient in the patients array with the given id or throw an error if not found
+      // TODO: Update the riskProfile property on the patient object
+      // TODO: Compute the new riskAdjustmentFactorScore using the computeRiskAdjustmentFactorScore function
+      // TODO: Set the riskAdjustmentFactor property on the patient object and return the updated patient object
     },
   },
 };

@@ -1,0 +1,248 @@
+{
+  "model_info": {
+    "model_description": "CMS-HCC 2017 Initial Model, 79 HCC Variables",
+    "model_name": "V2216_79_O2",
+    "model_segments": {
+      "CFA": "Community Full Benefit Dual Aged",
+      "CFD": "Community Full Benefit Dual Disabled",
+      "CNA": "Community NonDual Aged",
+      "CND": "Community NonDual Disabled",
+      "CPA": "Community Partial Benefit Dual Aged",
+      "CPD": "Community Partial Benefit Dual Disabled",
+      "INS": "Long Term Institutional",
+      "NE": "New Enrollees",
+      "SNPNE": "SNP New Enrollees"
+    }
+  },
+  "patients": [
+    {
+      "demographic_data": {
+        "age": 86,
+        "dob": "1930-08-21",
+        "ltimcaid": 1,
+        "nemcaid": 0,
+        "orec": 2,
+        "sex": 1
+      },
+      "diagnoses_to_hccs": [
+        {
+          "assign_type": "primary",
+          "cc": 115,
+          "cc_description": "Pneumococcal Pneumonia, Empyema, Lung Abscess",
+          "diag_code": "A420",
+          "diag_description": "Pulmonary actinomycosis",
+          "diag_type": 0,
+          "hcc": 115
+        },
+        {
+          "assign_type": "primary",
+          "cc": 2,
+          "cc_description": "Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",
+          "diag_code": "A4150",
+          "diag_description": "Gram-negative sepsis, unspecified",
+          "diag_type": 0,
+          "hcc": 2
+        }
+      ],
+      "pt_id": 1001,
+      "risk_profiles": {
+        "CFA": {
+          "demographic_coefficients": {
+            "M85_89": 1.0090000000000001
+          },
+          "diagnosis_coefficients": {
+            "HCC115": 0.162,
+            "HCC2": 0.596
+          },
+          "segment_description": "Community Full Benefit Dual Aged",
+          "segment_name": "CFA"
+        },
+        "CFD": {
+          "demographic_coefficients": {},
+          "diagnosis_coefficients": {
+            "HCC115": 0.049,
+            "HCC2": 0.8109999999999999
+          },
+          "segment_description": "Community Full Benefit Dual Disabled",
+          "segment_name": "CFD"
+        },
+        "CNA": {
+          "demographic_coefficients": {
+            "M85_89": 0.6940000000000001
+          },
+          "diagnosis_coefficients": {
+            "HCC115": 0.221,
+            "HCC2": 0.455
+          },
+          "segment_description": "Community NonDual Aged",
+          "segment_name": "CNA"
+        },
+        "CND": {
+          "demographic_coefficients": {},
+          "diagnosis_coefficients": {
+            "HCC115": 0.128,
+            "HCC2": 0.532
+          },
+          "segment_description": "Community NonDual Disabled",
+          "segment_name": "CND"
+        },
+        "CPA": {
+          "demographic_coefficients": {
+            "M85_89": 0.679
+          },
+          "diagnosis_coefficients": {
+            "HCC115": 0.302,
+            "HCC2": 0.409
+          },
+          "segment_description": "Community Partial Benefit Dual Aged",
+          "segment_name": "CPA"
+        },
+        "CPD": {
+          "demographic_coefficients": {},
+          "diagnosis_coefficients": {
+            "HCC115": 0.22,
+            "HCC2": 0.41700000000000004
+          },
+          "segment_description": "Community Partial Benefit Dual Disabled",
+          "segment_name": "CPD"
+        },
+        "INS": {
+          "demographic_coefficients": {
+            "LTIMCAID": 0.062,
+            "M85_89": 1.129
+          },
+          "diagnosis_coefficients": {
+            "HCC115": 0.067,
+            "HCC2": 0.34600000000000003
+          },
+          "segment_description": "Long Term Institutional",
+          "segment_name": "INS"
+        },
+        "NE": {
+          "demographic_coefficients": {
+            "NMCAID_NORIGDIS_NEM85_89": 1.511
+          },
+          "diagnosis_coefficients": {},
+          "segment_description": "New Enrollees",
+          "segment_name": "NE"
+        },
+        "SNPNE": {
+          "demographic_coefficients": {
+            "NMCAID_NORIGDIS_NEM85_89": 2.0469999999999997
+          },
+          "diagnosis_coefficients": {},
+          "segment_description": "SNP New Enrollees",
+          "segment_name": "SNPNE"
+        }
+      }
+    },
+    {
+      "demographic_data": {
+        "age": 89,
+        "dob": "1927-07-12",
+        "ltimcaid": 0,
+        "nemcaid": 0,
+        "orec": 1,
+        "sex": 2
+      },
+      "diagnoses_to_hccs": [
+        {
+          "assign_type": "primary",
+          "cc": 10,
+          "cc_description": "Lymphoma and Other Cancers",
+          "diag_code": "C7410",
+          "diag_description": "Malignant neoplasm of medulla of unspecified adrenal gland",
+          "diag_type": 0,
+          "hcc": 10
+        }
+      ],
+      "pt_id": 1002,
+      "risk_profiles": {
+        "CFA": {
+          "demographic_coefficients": {
+            "F85_89": 0.917,
+            "OriginallyDisabled_Female": 0.172
+          },
+          "diagnosis_coefficients": {
+            "HCC10": 0.713
+          },
+          "segment_description": "Community Full Benefit Dual Aged",
+          "segment_name": "CFA"
+        },
+        "CFD": {
+          "demographic_coefficients": {},
+          "diagnosis_coefficients": {
+            "HCC10": 0.7609999999999999
+          },
+          "segment_description": "Community Full Benefit Dual Disabled",
+          "segment_name": "CFD"
+        },
+        "CNA": {
+          "demographic_coefficients": {
+            "F85_89": 0.664,
+            "OriginallyDisabled_Female": 0.244
+          },
+          "diagnosis_coefficients": {
+            "HCC10": 0.677
+          },
+          "segment_description": "Community NonDual Aged",
+          "segment_name": "CNA"
+        },
+        "CND": {
+          "demographic_coefficients": {},
+          "diagnosis_coefficients": {
+            "HCC10": 0.6559999999999999
+          },
+          "segment_description": "Community NonDual Disabled",
+          "segment_name": "CND"
+        },
+        "CPA": {
+          "demographic_coefficients": {
+            "F85_89": 0.6779999999999999,
+            "OriginallyDisabled_Female": 0.126
+          },
+          "diagnosis_coefficients": {
+            "HCC10": 0.667
+          },
+          "segment_description": "Community Partial Benefit Dual Aged",
+          "segment_name": "CPA"
+        },
+        "CPD": {
+          "demographic_coefficients": {},
+          "diagnosis_coefficients": {
+            "HCC10": 0.5770000000000001
+          },
+          "segment_description": "Community Partial Benefit Dual Disabled",
+          "segment_name": "CPD"
+        },
+        "INS": {
+          "demographic_coefficients": {
+            "F85_89": 0.7490000000000001,
+            "ORIGDS": 0.0
+          },
+          "diagnosis_coefficients": {
+            "HCC10": 0.401
+          },
+          "segment_description": "Long Term Institutional",
+          "segment_name": "INS"
+        },
+        "NE": {
+          "demographic_coefficients": {
+            "NMCAID_ORIGDIS_NEF85_89": 1.167
+          },
+          "diagnosis_coefficients": {},
+          "segment_description": "New Enrollees",
+          "segment_name": "NE"
+        },
+        "SNPNE": {
+          "demographic_coefficients": {
+            "NMCAID_ORIGDIS_NEF85_89": 2.252
+          },
+          "diagnosis_coefficients": {},
+          "segment_description": "SNP New Enrollees",
+          "segment_name": "SNPNE"
+        }
+      }
+    }
+  ]
+}

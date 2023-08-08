@@ -1,3 +1,52 @@
+# Requirements for the Coding Exercise
+
+### Enable Routes in App.tsx
+- `/add-patient`:
+  - Add a new patient with the following input:
+    - name
+    - riskProfile (choice of values in enum RiskProfile)
+- `/patients`:
+  - Display a list of patients, with the following columns:
+    - id
+    - name
+    - enrollmentStatus (choice of values in enum EnrollmentStatus)
+    - riskProfile (choice of values in enum RiskProfile)
+    - riskAdjustmentFactorScore (number)
+   - enable updating enrollmentStatus or riskProfile by clicking on the value
+   - updating riskProfile should also update riskAdjustmentFactorScore
+
+### Implement GraphQL queries and mutations api in server.ts
+
+- `patients`:
+  - Returns an array of all patients
+- `addPatient`:
+  - Create a new Patient object with the following properties:
+    - `id`: a unique id (use one of 1001 or 1002 to match the data in data/riskAdjustmentSampleData.json)
+    - `name`: the name passed in as an argument
+    - `riskProfile`: the riskProfile passed in as an argument
+    - `enrollmentStatus`: default for new patient is ENROLLMENT_STATUS.PROSPECT
+  - Compute the `riskAdjustmentFactor` using the `computeRiskAdjustmentFactor` function
+  - Set the `riskAdjustmentFactor` property on the new Patient object
+  - Save the new Patient object to the `patients` array (our mock database)
+- `updatePatientEnrollmentStatus`:
+  - Find the patient in the `patients` array with the given id or throw an error if not found
+  - Update the `enrollmentStatus` property on the patient object and return the updated patient object
+- `updateRiskProfile`:
+  - Find the patient in the `patients` array with the given id or throw an error if not found
+  - Update the `riskProfile` property on the patient object
+  - Compute the new `riskAdjustmentFactorScore` using the `computeRiskAdjustmentFactorScore` function
+  - Set the `riskAdjustmentFactor` property on the patient object and return the updated patient object
+
+### Implement functions in server.ts
+
+- `computeRiskAdjustmentFactorScore`:
+  -  fetch patient data from data/riskAdjustmentSampleData.json
+  -  fetch demographic_coefficients and diagnosis_coefficients from patientData
+  -  compute and return RAF Score
+     -  RAF Score = ∑(demographic_coefficients) + ∑(diagnosis_coefficients)
+  -  return the computed RAF Score
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
