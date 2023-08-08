@@ -1,12 +1,6 @@
 # Pine Park Health Coding Challenge
 
-## Getting Started
-
-To start the Express server, run:
-1. `npm install`
-2. `npm run start`
-
-## Coding Challenge
+## Coding Exercise
 
 A simple React app with an Express.js server has been setup to help you get started. You should fork this repo and
 complete the following tasks. You may use any libraries you like to complete the challenge.
@@ -14,7 +8,17 @@ complete the following tasks. You may use any libraries you like to complete the
 Please limit yourself to no more than 2 hours for this project, we want to be sure to respect your time. We appreciate
 you taking the time to complete this challenge and look forward to reviewing your submission.
 
-### Challenge Tasks
+### Getting Started
+
+Before getting started, you will need to have nodejs installed on your machine, this project has been setup to
+work with nodejs version `18.17.0`. If you use [asdf](https://asdf-vm.com/) we've included a `.tool-versions` file to
+help you get setup if you're not using asdf you can install nodejs [here](https://nodejs.org/en/download).
+
+To start both the React app and the Express.js server, run the following commands in the root of the project:
+1. `npm install`
+2. `npm run dev`
+
+### Exercise Tasks
 
 #### Task 1: Display all the patients in the database on the `/patients` route in the React application
 
