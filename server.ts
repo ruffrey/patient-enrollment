@@ -1,68 +1,16 @@
-import { Patient } from "./src/types/Patient";
+import express from "express";
+import cors from "cors";
 
-const { ApolloServer, gql } = require('apollo-server');
+const PORT = 3000
+const app = express();
 
-// This will act as our mock database
-let patients: Patient[] = [];
+async function main () {
+  app.use(cors());
+  app.use(express.json());
 
-// Define your type definitions
-const typeDefs = gql`
-  type Patient {
-    id: ID!
-    name: String!
-    contactInformation: String!
-    insuranceDetails: String!
-    status: String!
-    riskAdjustmentFactor: Number!
-    riskProfile: String!
-  }
+  app.listen(PORT, () => {
+    console.info(`✅ Server running at http://localhost:${PORT}`);
+  });
+}
 
-  type Query {
-    patients: [Patient]
-  }
-
-  type Mutation {
-    addPatient(name: String!, contactInformation: String!, insuranceDetails: String!, status: String!): Patient
-    updatePatientStatus(id: ID!, status: String!): Patient
-  }
-`;
-
-// Define your resolvers
-const resolvers = {
-  Query: {
-    patients: () => patients,
-  },
-  Mutation: {
-    addPatient: (_, { name, riskProfile  }) => {
-      // TODO: Create a new Patient object with the following properties:
-      // - id: a unique id (use one of 1001 or 1002 to match the data in data/riskAdjustmentSampleData.json)
-      // - name: the name passed in as an argument
-      // - riskProfile: the riskProfile passed in as an argument
-      // - enrollmentStatus: default for new patient is ENROLLMENT_STATUS.PROSPECT
-
-      // TODO: Compute the riskAdjustmentFactor using the computeRiskAdjustmentFactor function
-      // TODO: Set the riskAdjustmentFactor property on the new Patient object
-
-      // TODO: Save the new Patient object to the patients array (our mock database)
-
-    },
-    updatePatientEnrollmentStatus: (_, { id, enrollmentStatus }) => {
-      // TODO: Find the patient in the patients array with the given id or throw an error if not found
-      // TODO: Update the enrollmentStatus property on the patient object and return the updated patient object
-    },
-    updateRiskProfile: (_, { id, riskProfile }) => {
-      // TODO: Find the patient in the patients array with the given id or throw an error if not found
-      // TODO: Update the riskProfile property on the patient object
-      // TODO: Compute the new riskAdjustmentFactorScore using the computeRiskAdjustmentFactorScore function
-      // TODO: Set the riskAdjustmentFactor property on the patient object and return the updated patient object
-    },
-  },
-};
-
-// Create an Apollo Server instance
-const server = new ApolloServer({ typeDefs, resolvers });
-
-// Start the server
-server.listen().then(({ url }) => {
-  console.log(`Server ready at ${url}`);
-});
+main().catch(e => console.error("Unexpected server error", e));

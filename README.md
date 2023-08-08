@@ -1,95 +1,56 @@
-# Requirements for the Coding Exercise
+# Pine Park Health Coding Challenge
 
-### Enable Routes in App.tsx
-- `/add-patient`:
-  - Add a new patient with the following input:
-    - name
-    - riskProfile (choice of values in enum RiskProfile)
-- `/patients`:
-  - Display a list of patients, with the following columns:
-    - id
-    - name
-    - enrollmentStatus (choice of values in enum EnrollmentStatus)
-    - riskProfile (choice of values in enum RiskProfile)
-    - riskAdjustmentFactorScore (number)
-   - enable updating enrollmentStatus or riskProfile by clicking on the value
-   - updating riskProfile should also update riskAdjustmentFactorScore
+## Getting Started
 
-### Implement GraphQL queries and mutations api in server.ts
+To start the Express server, run:
+1. `npm install`
+2. `npm run start`
 
-- `patients`:
-  - Returns an array of all patients
-- `addPatient`:
-  - Create a new Patient object with the following properties:
-    - `id`: a unique id (use one of 1001 or 1002 to match the data in data/riskAdjustmentSampleData.json)
-    - `name`: the name passed in as an argument
-    - `riskProfile`: the riskProfile passed in as an argument
-    - `enrollmentStatus`: default for new patient is ENROLLMENT_STATUS.PROSPECT
-  - Compute the `riskAdjustmentFactor` using the `computeRiskAdjustmentFactor` function
-  - Set the `riskAdjustmentFactor` property on the new Patient object
-  - Save the new Patient object to the `patients` array (our mock database)
-- `updatePatientEnrollmentStatus`:
-  - Find the patient in the `patients` array with the given id or throw an error if not found
-  - Update the `enrollmentStatus` property on the patient object and return the updated patient object
-- `updateRiskProfile`:
-  - Find the patient in the `patients` array with the given id or throw an error if not found
-  - Update the `riskProfile` property on the patient object
-  - Compute the new `riskAdjustmentFactorScore` using the `computeRiskAdjustmentFactorScore` function
-  - Set the `riskAdjustmentFactor` property on the patient object and return the updated patient object
+## Coding Challenge
 
-### Implement functions in server.ts
+A simple React app with an Express.js server has been setup to help you get started. You should fork this repo and
+complete the following tasks. You may use any libraries you like to complete the challenge.
 
-- `computeRiskAdjustmentFactorScore`:
-  -  fetch patient data from data/riskAdjustmentSampleData.json
-  -  fetch demographic_coefficients and diagnosis_coefficients from patientData
-  -  compute and return RAF Score
-     -  RAF Score = ∑(demographic_coefficients) + ∑(diagnosis_coefficients)
-  -  return the computed RAF Score
+Please limit yourself to no more than 2 hours for this project, we want to be sure to respect your time. We appreciate
+you taking the time to complete this challenge and look forward to reviewing your submission.
+
+### Challenge Tasks
+
+#### Task 1: Display all the patients in the database on the `/patients` route in the React application
+
+Acceptance criteria:
+* Patients are displayed as a table with the following columns:
+  * id
+  * name
+  * enrollmentStatus
+* Table has a header above it that says of "Patients"
+
+#### Task 2: Add a button that will create a patient in our in-memory datastore
+
+Acceptance criteria:
+* Button is labeled "Add Patient" and is located above the table of patients in the right hand corner
+* The form to create a new patient accepts the following **required** inputs:
+  * name (text field)
+  * enrollment status (dropdown with options: "Prospect", "Insurance Eligibility Verified", "Enrollment Contract Signed", "Patient Record Created", "Intake Appointment Scheduled")
+* When the form is submitted, the patient is added to the in-memory datastore and the table of fakeDatabaseData is updated to
+  include the new patient
+
+#### Task 3: Display the risk adjustment score for each patient in the table of patients
+
+Acceptance criteria:
+* Display the computed risk adjustment score (RAF Score) for each patient in a new column named "RAF Score" in the table of 
+* Compute the risk adjustment factor score (RAF Score) for each patient by using their `patientRiskProfile` records & the following
+  equation
+  ```
+  RAF Score = ∑(demographicCoefficients) + ∑(diagnosisCoefficients)
+  ```
+* If no risk profile data exists, display "N/A" in the column
 
 
-# Getting Started with Create React App
+#### Task 4: Calculate & display the risk profile segment that has the highest average score across all patients
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Acceptance criteria:
+* Display the risk profile segment name ("CFA", "CFD", "CNA", etc.) that has the highest average RAF Score across all patients. 
+The segment name along with the average score for that segment should be displayed below the patients table.  
+* The same equation as task 3 will be used to calculate the RAF score but this time records should be grouped by `segmentName` 
+instead of `patientId` when calculating the RAF score

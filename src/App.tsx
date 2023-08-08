@@ -8,7 +8,7 @@ const App: React.FC = () => {
     <Router>
       <Routes>
         <Route path="/add-patient" element={<AddPatient />} />
-        <Route path="/patients" element={<ListPatients />} />
+        <Route path="/fakeDatabaseData" element={<ListPatients />} />
       </Routes>
     </Router>
   );
