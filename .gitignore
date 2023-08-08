@@ -131,3 +131,5 @@ dist
 .idea/workspace.xml
 .idea/aws.xml
 *.iml
+
+.idea/
