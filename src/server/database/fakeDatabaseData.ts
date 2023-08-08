@@ -1,4 +1,4 @@
-import { Patient, PatientRiskProfile } from "../types";
+import type { Patient, PatientRiskProfile } from "../types";
 
 export const patients = [
   {

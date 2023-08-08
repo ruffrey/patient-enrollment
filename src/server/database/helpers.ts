@@ -1,5 +1,5 @@
-import {patients, patientRiskProfiles} from "./fakeDatabaseData";
-import type {Patient, PatientRiskProfile} from "../types";
+import { patients, patientRiskProfiles } from "./fakeDatabaseData";
+import type { Patient, PatientRiskProfile } from "../types";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
