@@ -58,3 +58,10 @@ Acceptance criteria:
 The segment name along with the average score for that segment should be displayed below the patients table.  
 * The same equation as task 3 will be used to calculate the RAF score but this time records should be grouped by `segmentName` 
 instead of `patientId` when calculating the RAF score
+
+### How to Submit
+
+When you are finished, please create a zip file of your project and upload it at this URL:
+https://forms.gle/jn3nbBRbgVrZu6LA6
+
+Once you have upload it please send a message to your Pine Park Health contact to let us know your submission is ready for review.
