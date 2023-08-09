@@ -61,6 +61,7 @@ instead of `patientId` when calculating the RAF score
 
 ### How to Submit
 
-When you are finished, please create a zip file of your project and email the file
-(or upload to a shared drive such as Google Drive or Dropbox and email a link to the file) 
-to your Pine Park Health contact.
+When you are finished, please create a zip file of your project and upload it at this URL:
+https://forms.gle/jn3nbBRbgVrZu6LA6
+
+Once you have upload it please send a message to your Pine Park Health contact to let us know your submission is ready for review.
