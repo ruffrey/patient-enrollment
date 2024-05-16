@@ -1,5 +1,10 @@
 import { Router } from "express";
-import { addPatient, getPatientRiskProfile, getPatientsWithRisk } from "./database/helpers";
+import {
+    addPatient,
+    getPatientRiskProfile,
+    getPatientsWithRisk,
+    getSegmentedRisk
+} from "./database/helpers";
 
 const router = Router();
 
@@ -24,6 +29,11 @@ router.get("/api/patients/:patientId/risk", async (req, res) => {
     } catch(err: any) {
       res.status(400).json({ error: err.message });
     }
+})
+
+router.get("/api/risk-segments", async (req, res) => {
+  const riskSegmented = await getSegmentedRisk();
+  res.json(riskSegmented);
 })
 
 export { router }

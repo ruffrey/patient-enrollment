@@ -38,7 +38,9 @@ export const PatientsPage: React.FC = () => {
     }
     useEffect(() => {
         superagent.get("/api/patients")
-            .then((res) => setPatients(res.body))
+            .then((res) => {
+                setPatients(res.body);
+            })
             .catch((err) => setErr(JSON.stringify(err?.body || err?.message || err)))
     }, [formSubmission]);
 

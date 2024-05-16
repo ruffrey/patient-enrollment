@@ -15,7 +15,7 @@ export type Patient = {
 
 export type PatientRaf = { patientId: number, raf: number, notApplicable: boolean}
 
-type RiskProfileSegment = "CFA" | "CFD" | "CNA" | "CND" | "CPA" | "CPD" | "INS" | "NE" | "SNPNE";
+export type RiskProfileSegment = "CFA" | "CFD" | "CNA" | "CND" | "CPA" | "CPD" | "INS" | "NE" | "SNPNE";
 
 export type PatientRiskProfile = {
   demographicCoefficients?: number[];
@@ -25,3 +25,8 @@ export type PatientRiskProfile = {
   patientId: number;
 }
 
+export type SegmentRaf = {
+  segmentName: RiskProfileSegment
+  raf: number
+  notApplicable: boolean
+}

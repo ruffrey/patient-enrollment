@@ -1,5 +1,11 @@
 import { patients, patientRiskProfiles } from "./fakeDatabaseData";
-import type {Patient, PatientRaf, PatientRiskProfile} from "../../types";
+import type {
+  Patient,
+  PatientRaf,
+  PatientRiskProfile,
+  RiskProfileSegment,
+  SegmentRaf
+} from "../../types";
 import { EnrollmentStatus } from "../../types";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -63,20 +69,52 @@ export async function getPatientRiskProfiles() {
 }
 
 const sum  = (a: number, d: number) => a + d;
+const sumRiskByField = (field: keyof PatientRiskProfile): number | null => {
+  const profiles = patientRiskProfilesById[field] || [];
+  const raf = profiles.reduce((acc: number, p: PatientRiskProfile) => {
+    return acc
+        + (p.demographicCoefficients || []).reduce(sum, 0)
+        + (p.diagnosisCoefficients || []).reduce(sum, 0);
+  }, 0);
+  return raf;
+}
+
 export async function getPatientRiskProfile(...patientIds: number[]): Promise<PatientRaf[]> {
   await delay(500);
   const rafs: PatientRaf[] = [];
   for (const patientId of patientIds) {
-    const profiles = patientRiskProfilesById[patientId] || [];
-    const raf = profiles.reduce((acc, p: PatientRiskProfile) => {
-      return acc + (p.demographicCoefficients || []).reduce(sum, 0) + (p.diagnosisCoefficients || []).reduce(sum, 0);
-    }, 0);
+    const raf = sumRiskByField("patientId");
     rafs.push({
       patientId,
-      raf,
-      notApplicable: profiles.length === 0,
+      raf: raf === null ? 0 : raf,
+      notApplicable: raf === null,
     });
   }
 
+  return rafs;
+}
+export async function getSegmentedRisk(): Promise<SegmentRaf[]> {
+  await delay(500);
+  const rafs: SegmentRaf[] = [];
+  // value is the sum of each demographic and diagnosis coefficients for a given segment, which will be averaged
+  const segmentRisk: Record<RiskProfileSegment, number[]> = {};
+  for (const profile of patientRiskProfiles) {
+    if (!segmentRisk[profile.segmentName]) {
+      segmentRisk[profile.segmentName] = [];
+    }
+    const deepSum = (profile.demographicCoefficients || []).reduce(sum, 0)
+        + (profile.diagnosisCoefficients || []).reduce(sum, 0);
+    segmentRisk[profile.segmentName].push(deepSum);
+  }
+  const segments = Object.keys(segmentRisk);
+  for (const segment of segments) {
+    const scoresToAverage = segmentRisk[segment];
+    const raf = scoresToAverage.reduce((acc: number, n: number) => acc + n, 0) / scoresToAverage.length;
+    rafs.push({
+      segmentName: segment as RiskProfileSegment,
+      raf: raf === null ? 0 : raf,
+      notApplicable: false,
+    });
+  }
   return rafs;
 }

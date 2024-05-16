@@ -8,6 +8,7 @@ import {
 import { Root } from "./routes/root";
 import {PatientsPage} from "./routes/patients";
 import "./index.scss";
+import {RiskPage} from "./routes/risk";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,9 @@ const router = createBrowserRouter([
   {
     path: "/patients",
     element: <PatientsPage />,
+  },{
+    path: "/risk",
+    element: <RiskPage />,
   },
 ]);
 
