@@ -1,5 +1,4 @@
-import "./setup"; // must be at top
-
+import "./setup";
 import { app } from "../server/main";
 import supertest = require("supertest")
 

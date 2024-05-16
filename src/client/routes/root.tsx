@@ -1,7 +1,8 @@
 export function Root() {
     return (
-        <div>
+        <article>
             <h1>Root</h1>
-        </div>
+            <p><a href="/patients">Patients</a></p>
+        </article>
     )
 }

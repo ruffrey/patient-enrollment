@@ -1,0 +1,50 @@
+/* table "modern minimalist style" from chatgpt */
+
+/* Reset some default styles */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Add borders to table and cells */
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+/* Add padding to cells */
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+/* Style table headers */
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+/* Add alternating row colors */
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Add hover effect */
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Optional: make table headers sticky */
+thead th {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
+}
+
+/* Add subtle shadow for a modern look */
+table {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* end table */

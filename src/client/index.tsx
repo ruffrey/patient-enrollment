@@ -6,11 +6,17 @@ import {
 } from "react-router-dom";
 
 import { Root } from "./routes/root";
+import {PatientsPage} from "./routes/patients";
+import "./index.scss";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+  },
+  {
+    path: "/patients",
+    element: <PatientsPage />,
   },
 ]);
 

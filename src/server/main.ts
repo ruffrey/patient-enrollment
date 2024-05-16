@@ -1,4 +1,4 @@
-import express from 'express';
+import express = require('express');
 import * as path from 'path';
 import { createServer } from 'http';
 import { router } from "./routes";

@@ -1,17 +1,17 @@
-import type { Patient, PatientRiskProfile } from "../types";
+import {EnrollmentStatus, Patient, PatientRiskProfile} from "../../types";
 
-export const patients = [
+export const patients: Patient[] = [
   {
     id: 1001,
     name: "John Doe",
-    enrollmentStatus: "Prospect",
+    enrollmentStatus: EnrollmentStatus.Prospect,
   },
   {
     id: 1002,
     name: "Jane Doe",
-    enrollmentStatus: "Insurance Eligibility Verified",
+    enrollmentStatus: EnrollmentStatus.InsuranceEligibilityVerified,
   }
-] satisfies Patient[];
+];
 
 export const patientRiskProfiles = [
   {
