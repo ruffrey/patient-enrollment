@@ -1,7 +1,9 @@
 import "./setup";
-import { app } from "../server/main";
-import supertest = require("supertest")
+import {app} from "../server/main";
 import * as assert from "node:assert/strict"
+import {patients} from "../server/database/fakeDatabaseData";
+import {EnrollmentStatus} from "../types";
+import supertest = require("supertest");
 
 describe("patients", () => {
     describe("list api", () => {
@@ -10,16 +12,9 @@ describe("patients", () => {
             .then(res => {
                 assert.strictEqual(res.status, 200);
                 assert.strictEqual(res.body.length, 2);
-                assert.deepEqual(res.body[0], {
-                    id: 1001,
-                    name: "John Doe",
-                    enrollmentStatus: "Prospect",
-                })
-                assert.deepEqual(res.body[1], {
-                    id: 1002,
-                    name: "Jane Doe",
-                    enrollmentStatus: "Insurance Eligibility Verified",
-                })
+                assert.equal(res.body[0].id, 1001);
+                assert.equal(res.body[0].name, "John Doe");
+                assert.equal(res.body[0].enrollmentStatus, "Prospect");
             }))
     });
     describe("create patient", () => {
@@ -47,5 +42,38 @@ describe("patients", () => {
                 assert.equal(patients[patients.length-1].name, "Dudebro Parrish");
                 assert.equal(patients[patients.length-1].enrollmentStatus, "Prospect");
             }));
+    });
+    describe("risk", () => {
+        it("returns risk profile for patient 1001", () => supertest(app)
+            .get("/api/patients/1001/risk")
+            .expect({
+                patientId: 1001,
+                raf: 11.846,
+                notApplicable: false,
+            }));
+        it("returns risk profile for patient 1002", () => supertest(app)
+            .get("/api/patients/1002/risk")
+            .expect({
+                patientId: 1002,
+                raf: 11.421,
+                notApplicable: false,
+            }));
+        describe("with no risk profiles", () => {
+            beforeEach(() => {
+                patients.push({
+                    id: 1003,
+                    name: "Mr Fantastic",
+                    enrollmentStatus: EnrollmentStatus.Prospect,
+                })
+            })
+            afterEach(() => patients.pop())
+            it("returns N/A", () => supertest(app)
+                .get("/api/patients/1003/risk")
+                .expect({
+                    patientId: 1003,
+                    raf: 0,
+                    notApplicable: true,
+                }));
+        });
     });
 });

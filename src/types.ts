@@ -13,6 +13,8 @@ export type Patient = {
   enrollmentStatus: EnrollmentStatus;
 }
 
+export type PatientRaf = { patientId: number, raf: number, notApplicable: boolean}
+
 type RiskProfileSegment = "CFA" | "CFD" | "CNA" | "CND" | "CPA" | "CPD" | "INS" | "NE" | "SNPNE";
 
 export type PatientRiskProfile = {

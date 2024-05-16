@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Patient} from "../../types";
+import { Patient, PatientRaf } from "../../types";
 import superagent from "superagent";
 
 const enrollmentStatuses = [
@@ -10,7 +10,7 @@ const enrollmentStatuses = [
     "Intake Appointment Scheduled",
 ];
 export const PatientsPage: React.FC = () => {
-    const [patients, setPatients] = React.useState<null|Patient[]>(null);
+    const [patients, setPatients] = React.useState<null|(Patient & PatientRaf)[]>(null);
     const [formSubmission, setFormSubmission] = React.useState(1);
     const [formLoading, setFormLoading] = React.useState(false);
     const [name, setName]  = React.useState<string>("");
@@ -70,6 +70,7 @@ export const PatientsPage: React.FC = () => {
                         <th>id</th>
                         <th>name</th>
                         <th>enrollmentStatus</th>
+                        <th>RAF Score</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,6 +81,7 @@ export const PatientsPage: React.FC = () => {
                         <td>{patient.id}</td>
                         <td>{patient.name}</td>
                         <td>{patient.enrollmentStatus}</td>
+                        <td>{patient.notApplicable ? "N/A" : patient.raf}</td>
                     </tr>)}
                 </tbody>
             </table>
