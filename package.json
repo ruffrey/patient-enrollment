@@ -8,7 +8,8 @@
     "watch:server": "nodemon dist/server.js",
     "dev": "npm-run-all --parallel watch:*",
     "start": "node dist/server.js",
-    "postinstall": "webpack"
+    "postinstall": "webpack",
+    "test": "webpack && mocha -r ts-node/register/transpile-only src/spec/**/*.spec.ts"
   },
   "keywords": [],
   "author": "",
@@ -33,7 +34,12 @@
     "webpack-node-externals": "^3.0.0"
   },
   "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/supertest": "^6.0.2",
+    "mocha": "^10.4.0",
     "nodemon": "^2.0.20",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "supertest": "^7.0.0",
+    "ts-node": "^10.9.2"
   }
 }
